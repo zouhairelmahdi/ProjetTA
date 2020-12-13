@@ -1,7 +1,6 @@
 test.csv
 train.csv
 test.py
-data/sample_submission.csv
 test.ipynb
-
+sample_submission.csv
 
