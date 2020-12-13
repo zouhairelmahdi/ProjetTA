@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import StratifiedKFold
 
 class GestionDonnees:
     def __init__(self, distribution_gaussienne, bruit):
@@ -39,6 +40,12 @@ class GestionDonnees:
         
         return id_entrain, x_entrain, y_entrain, id_test, x_test
     
+    def generer_donnees_validation_croisee(self, x_entrain, y_entrain):
+        """
+        Generer les donnees pour k=10 validation croisee tel que les 10 sous ensembles contiennent toutes les classes (Stratification)
+        """
+        skf = StratifiedKFold(n_splits=10, shuffle=True) #shuffle: mélanger les données
+
     
     
     
