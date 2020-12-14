@@ -22,7 +22,7 @@ class GestionDonnees:
     def generer_donnees(self):
 
         chemin_entrain = './data/train.csv'
-        chemin_test = './data/test.csv'
+        chemin_nouveau_test = './data/test.csv'
         donnees_entrain = pd.read_csv(chemin_entrain)
         donnees_nouveau_test = pd.read_csv(chemin_nouveau_test)
         
@@ -31,6 +31,11 @@ class GestionDonnees:
         y = LabelEncoder().fit(classes).transform(classes)
         
         id_test = donnees_nouveau_test.pop('id')
+        
+        if(self.bruit):
+            mu, sigma = 0, 0.1
+            bruit_ = np.random.normal(mu, sigma, donnees_entrain.shape)
+            donnees_entrain = donnees_entrain + bruit_
         
         if(self.distribution_gaussienne):
             x = StandardScaler().fit(donnees_entrain).transform(donnees_entrain)
@@ -41,7 +46,7 @@ class GestionDonnees:
            
         x_entrain, x_test, y_entrain, y_test = train_test_split(x, y, train_size=0.8, random_state=0, shuffle=True)
              
-        return X_entrain, y_entrain, x_test, y_test, x_nouveau_test
+        return x_entrain, y_entrain, x_test, y_test, x_nouveau_test
     
     
     

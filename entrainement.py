@@ -1,3 +1,8 @@
+##############################
+#YOUNESS MOUAD (20 132 250)
+#EL MAHDI ZOUHAIR (20 132 241)
+###############################
+
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import make_scorer, accuracy_score
